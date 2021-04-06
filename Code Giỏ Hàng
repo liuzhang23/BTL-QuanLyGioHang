@@ -1,0 +1,57 @@
+#include <stdio.h>
+#include <conio.h>
+#include <stdlib.h>
+struct GioHang{
+	char ten[20];
+	int soluong;
+	float gia;
+};
+typedef GioHang GH;
+void nhap (GH &gh);
+void nhapN (GH a[],int n);
+
+void nhap (GH &gh){
+	printf ("\nnhap ten san pham: ");
+	fflush(stdin);
+	gets (gh.ten);
+	printf ("nhap gia tien: ");
+	scanf ("%f",&gh.gia);
+	printf ("nhap so luong: ");
+	scanf ("%d",&gh.soluong);
+	printf ("\n");
+}
+void nhapN (GH a[], int n){
+ for (int i=0; i<n; i++){
+ 	printf ("Nhap san pham so: %d ", i+1);
+ 	nhap(a[i]);
+ }	
+}
+
+int main (){
+	GH a[20];
+	int key;
+	int n;
+	do{
+		printf ("nhap so luong san pham: ");
+		scanf ("%d",&n);
+	}while (n <= 0);
+	printf ("\nmenu\n");
+	printf ("\n1. nhap du lieu\n");
+	printf ("\n2. in phieu thanh toan\n");
+	printf ("\nvui long nhap lua chon cua ban: ");
+	scanf ("%d",&key);
+	switch (key){
+		case 1:
+			printf ("\nban da chon nhap du lieu.\n");
+			//nhap (a,soluong);
+			nhapN(a,n);
+		
+			break;
+		case 2:
+			printf ("\nban da chon in phieu thanh toan.\n");
+			break;
+		default:
+		    printf ("\nkhong co chuc nang nay\n");
+			break;	
+	}
+}
