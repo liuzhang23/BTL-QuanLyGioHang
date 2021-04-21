@@ -1,0 +1,131 @@
+#include<stdio.h>
+#include<conio.h>
+#include<stdlib.h>
+
+struct GioHang{
+	char ten[100];
+	int soluong;
+	int gia;
+	float tongtien;
+};
+
+typedef GioHang GH;
+
+void Nhap(GH &gh);
+void NhapN(GH a[], int n);
+void xuat(GH gh);
+void xuatN(GH a[], int n);
+void sapxep(GH a[], int n);
+
+int main(){
+	int key;
+	int n;
+	bool daNhap=false;
+	do{
+		printf("\nNhap so luong GH:");
+		scanf("%d",&n);
+	}
+	while(n<=0);
+	GH a[100];
+	while(true){
+		system("cls");
+		printf("              IIIIII       IIIIII IIIIIIII IIIIII       III III      III   \n");
+		printf("              III III     III III III      III III      III III      III   \n");
+		printf("              III  III   III  III III      III  III     III III      III   \n");
+		printf("              III   III III   III IIIIIIII III   III    III III      III   \n");
+		printf("              III      I      III IIIIIIII III    III   III III      III   \n");
+		printf("              III             III III      III     III  III III      III   \n");
+		printf("              III             III III      III      III III IIIIIIIIIIII   \n");
+		printf("              III             III IIIIIIII III       IIIIII IIIIIIIIIIII   \n");
+		printf("                ***************************************************\n");
+		printf("                **     CHUONG TRINH QUAN LI GIO HANG             **\n");
+		printf("                **       1. Nhap du lieu                         **\n");
+		printf("                **       2. In danh sach gio hang                **\n");
+		printf("                **       3. Sap xep gio hang theo gia tien       **\n");
+		printf("                **       4. Thoat                                **\n");
+		printf("                ***************************************************\n");
+		printf("                         Nhap lua chon cua ban: ");
+		scanf("%d",&key);
+		switch(key){
+			case 1:
+				printf("\nBan da chon nhap DS gio hang!");
+				NhapN(a,n);
+				printf("\nBan da nhap thanh cong!");
+				daNhap = true;
+				printf("\nNhap phim bat ky de tiep tuc!");
+				getch();
+				break;
+			case 2:
+				if(daNhap){
+					printf("\nBan da chon xuat DS gio hang!");
+					xuatN(a,n);
+				}else{
+					printf("\nNhap DS gio hang truoc!!!");
+				}
+				printf("\nNhan phim bat ky de tiep tuc!");
+				getch();
+				break;
+			case 3:
+				if(daNhap){
+					printf("\nBan da chon sap xep gio hang theo gia tien!");
+					sapxep(a,n);
+					xuatN(a,n);
+				}else{
+					printf("\nNhap DS gio hang truoc!!!");
+				}
+				printf("\nNhan phim bat ky de tiep tuc!");
+				getch();
+				break;
+			case 4:
+				printf("\nBan da chon thoat chuong trinh!");
+				getch();
+				return 0;
+			default:
+				printf("\nKhong co chuc nang nay!!!");
+				printf("\nNhan phim bat ky de tiep tuc!");
+				getch();
+				break;
+		}
+	}
+}
+void Nhap(GH &gh){
+	printf("\nNhap ten: ");fflush(stdin); gets(gh.ten);
+	printf("\nNhap so luong: "); scanf ("%d",&gh.soluong);
+	printf("\nNhap gia: "); scanf("%d",&gh.gia);
+}
+void NhapN(GH a[], int n){
+	for(int i = 0; i<n; ++i){
+		printf("\nNhap gio hang thu %d:",i+1);
+		Nhap(a[i]);
+	}
+	printf("\n____________________________");
+}
+
+void xuat(GH gh){
+	printf("\nTen san pham: %s", gh.ten);
+	printf("\nSo luong: %d", gh.soluong);
+	printf("\nGia tien: %d", gh.gia);
+}
+
+void xuatN(GH a[], int n){
+	printf("\n____________________________");
+	for(int i = 0; i<n; ++i){
+		printf("\nThong tin san pham thu %d: \n", i+1);
+		xuat(a[i]);
+    }
+    printf("\n____________________________");
+}
+
+void sapxep(GH a[], int n){
+	GH tmp;
+	for(int i=0;i<n;++i){
+		for(int j=i+1;j<n;++j){
+			if(a[i].gia > a[j].gia){
+				tmp = a[i];
+				a[i] = a[j];
+				a[j] = tmp;
+			}
+		}
+	}
+}
+
